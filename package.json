@@ -1,6 +1,6 @@
 {
   "name": "transaction-recorder",
-  "module": "index.ts",
+  "module": "module",
   "type": "module",
   "private": true,
   "scripts": {
