@@ -15,11 +15,6 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedIndexedAccess": true,
     "noImplicitOverride": true,
-
-    // Some stricter flags (optional)
-    "noUnusedLocals": false,
-    "noUnusedParameters": false,
-    "noPropertyAccessFromIndexSignature": false
   },
   "include": ["src"],
   "exclude": ["node_modules"]
