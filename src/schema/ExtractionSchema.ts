@@ -1,4 +1,4 @@
-import parseNumberLike from "../utils/parseNumberLike";
+import parseNumberLike from "@/utils/parseNumberLike";
 import { z } from "zod";
 
 const ExtractionSchema = z.object({

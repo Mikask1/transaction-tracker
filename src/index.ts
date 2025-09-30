@@ -1,5 +1,5 @@
 import express, {  } from "express";
-import trackTransactionRouter from "./route/trackTransaction";
+import trackTransactionRouter from "@/route/trackTransaction";
 
 const app = express();
 

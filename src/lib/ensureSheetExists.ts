@@ -1,5 +1,5 @@
 import type { sheets_v4 } from "googleapis";
-import toColumnLetter from "./toColumnLetter";
+import toColumnLetter from "@/lib/toColumnLetter";
 
 /**
  * Ensures a sheet with the given title exists in the spreadsheet, creating it if needed.

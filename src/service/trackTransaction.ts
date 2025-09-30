@@ -1,12 +1,12 @@
 import { z } from "zod";
-import createSheetsClient from "../lib/createSheetsClient";
-import ExtractionSchema from "../schema/ExtractionSchema";
-import createOpenRouter from "../lib/createOpenRouterLLM";
-import toDataUrl from "../utils/toDataUrl";
+import createSheetsClient from "@/lib/createSheetsClient";
+import ExtractionSchema from "@/schema/ExtractionSchema";
+import createOpenRouter from "@/lib/createOpenRouterLLM";
+import toDataUrl from "@/utils/toDataUrl";
 import { SystemMessage, HumanMessage } from "@langchain/core/messages";
 import { StructuredOutputParser } from "langchain/output_parsers";
-import getMonthSheetTitle from "../lib/getMonthSheetTitle";
-import ensureSheetExists from "../lib/ensureSheetExists";
+import getMonthSheetTitle from "@/lib/getMonthSheetTitle";
+import ensureSheetExists from "@/lib/ensureSheetExists";
 
 /**
  * Appends a transaction record to the provided spreadsheet.

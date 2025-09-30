@@ -1,6 +1,6 @@
 import { Router } from "express";
-import authenticateApiKey from "../middleware/auth";
-import { appendToSheet, extractTransaction } from "../service/trackTransaction";
+import authenticateApiKey from "@/middleware/auth";
+import { appendToSheet, extractTransaction } from "@/service/trackTransaction";
 import type { Request, Response } from "express";
 import { v4 as uuidv4 } from "uuid";
 import multer from "multer";

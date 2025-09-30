@@ -6,7 +6,7 @@
   "scripts": {
     "start": "bun run index.ts",
     "dev": "nodemon --exec bun run index.ts",
-    "build": "tsc"
+    "build": "tsc && tsc-alias"
   },
   "dependencies": {
     "@langchain/openai": "^0.5.8",
@@ -22,7 +22,8 @@
     "zod": "^3.22.4"
   },
   "devDependencies": {
-    "@types/bun": "latest"
+    "@types/bun": "latest",
+    "tsc-alias": "^1.8.16"
   },
   "peerDependencies": {
     "typescript": "^5"
