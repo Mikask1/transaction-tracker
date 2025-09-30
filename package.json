@@ -1,12 +1,11 @@
 {
   "name": "transaction-recorder",
-  "module": "module",
   "type": "module",
   "private": true,
   "scripts": {
-    "start": "bun run index.ts",
-    "dev": "nodemon --exec bun run index.ts",
-    "build": "tsc && tsc-alias"
+    "dev": "nodemon --exec bun run src/index.ts",
+    "build": "tsc && tsc-alias",
+    "start": "node dist/index.js"
   },
   "dependencies": {
     "@langchain/openai": "^0.5.8",
@@ -23,9 +22,7 @@
   },
   "devDependencies": {
     "@types/bun": "latest",
-    "tsc-alias": "^1.8.16"
-  },
-  "peerDependencies": {
+    "tsc-alias": "^1.8.16",
     "typescript": "^5"
   }
 }
