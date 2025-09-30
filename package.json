@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "nodemon --exec bun run src/index.ts",
-    "build": "tsc && tsc-alias",
+    "build": "tsc && tsc-alias && tsc-esm-fix dist/**/*.js",
     "start": "node dist/index.js"
   },
   "dependencies": {
@@ -23,6 +23,7 @@
   "devDependencies": {
     "@types/bun": "latest",
     "tsc-alias": "^1.8.16",
-    "typescript": "^5"
+    "tsc-esm-fix": "^3.1.2",
+    "typescript": "^5.5"
   }
 }
