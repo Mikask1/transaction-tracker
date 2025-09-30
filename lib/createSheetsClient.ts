@@ -1,14 +1,15 @@
 import { google, sheets_v4 } from "googleapis";
-import path from "path";
-import fs from "fs/promises";
 
 /**
- * Creates a Google Sheets API client using the service account credentials.
+ * Creates a Google Sheets API client using the service account credentials from an environment variable.
+ * @returns {Promise<sheets_v4.Sheets>} The Google Sheets API client.
  */
 export default async function createSheetsClient(): Promise<sheets_v4.Sheets> {
-    const credentialsPath = path.join(process.cwd(), "service_account_credentials.json");
-    const json = await fs.readFile(credentialsPath, "utf8");
-    const credentials = JSON.parse(json);
+    const credentialsJson = process.env.GOOGLE_SERVICE_ACCOUNT_CREDENTIALS;
+    if (!credentialsJson) {
+        throw new Error("🛑 GOOGLE_SERVICE_ACCOUNT_CREDENTIALS environment variable is not set");
+    }
+    const credentials = JSON.parse(credentialsJson);
     const auth = new google.auth.GoogleAuth({
         credentials,
         scopes: ["https://www.googleapis.com/auth/spreadsheets"],
