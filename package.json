@@ -1,7 +1,7 @@
 {
   "name": "transaction-recorder",
   "module": "index.ts",
-  "type": "commonjs",
+  "type": "module",
   "private": true,
   "scripts": {
     "start": "bun run index.ts",
