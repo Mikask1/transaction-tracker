@@ -3,8 +3,8 @@ import createSheetsClient from "../lib/createSheetsClient";
 import ExtractionSchema from "../schema/ExtractionSchema";
 import createOpenRouter from "../lib/createOpenRouterLLM";
 import toDataUrl from "../utils/toDataUrl";
-import { SystemMessage, HumanMessage, AIMessage } from "@langchain/core/messages";
-import RobustStructuredOutputParser from "../lib/RobustStructuredOutoutParser";
+import { SystemMessage, HumanMessage } from "@langchain/core/messages";
+import { StructuredOutputParser } from "langchain/output_parsers";
 import getMonthSheetTitle from "../lib/getMonthSheetTitle";
 import ensureSheetExists from "../lib/ensureSheetExists";
 
@@ -80,13 +80,19 @@ export async function extractTransaction(buffer: Buffer, mimetype: string): Prom
         ],
     });
 
-    let result: z.infer<typeof ExtractionSchema> | null = null;
+
+    const parser = StructuredOutputParser.fromZodSchema(ExtractionSchema as any);
+
+    const chain = llm.pipe(parser);
+
+    let result: any = null;
     const error = []
     while (error.length < 3) {
         try {
-            result = await llm
-                .pipe(new RobustStructuredOutputParser(ExtractionSchema))
-                .invoke([system, user, new HumanMessage(`The last invocation failed with the following error, please revise your response: ${error.join("\n")}`)])
+            result = await chain
+                .invoke([system, user, ...(error.length > 0 ? [new HumanMessage(`The last invocation failed with the following error, please revise your response: ${error.join("\n")}`)] : [])])
+            
+            result = ExtractionSchema.parse(result);
             if (result) break;
         } catch (err) {
             if (err instanceof Error && err.stack) {
